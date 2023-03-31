@@ -21,4 +21,9 @@ public class EmployeeServiceImp implements EmployeeService{
     public void saveNewEmployee(Employee employee) {
             employeeRepository.save(employee);
     }
+
+    @Override
+    public Employee getEmployeeById(Long id) {
+        return null;
+    }
 }
