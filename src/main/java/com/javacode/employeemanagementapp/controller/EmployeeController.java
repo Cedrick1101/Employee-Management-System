@@ -3,10 +3,12 @@ package com.javacode.employeemanagementapp.controller;
 import com.javacode.employeemanagementapp.model.Employee;
 import com.javacode.employeemanagementapp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -41,4 +43,14 @@ public class EmployeeController {
          return "redirect:/";
      }
 
+     @GetMapping("/showFormForUpdate/{id}")
+    public String showFormForUpdate(@PathVariable (value = "id") long id, Model model){
+
+        //get employee from the service
+        Employee employee = employeeService.getEmployeeById(id);
+        //set employee as model attribute to pre-populate the form
+        model.addAttribute("employee", employee);
+
+        return "update_employee";
+     }
 }
